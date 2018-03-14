@@ -18,7 +18,8 @@ namespace ConsoleApp1
             //runner.PrintSum(10);
             //runner.PrintSum2(10);
             //runner.PrintSum2("10");
-            runner.Run3();
+            //runner.Run3();
+            runner.Run4();
         }
     }
 
@@ -117,6 +118,38 @@ namespace ConsoleApp1
         public class VicePresident : Manager
         {
             public int StockShares { get; set; }
+        }
+
+        public void Run4()
+        {
+            var time = GetTime();
+            WriteLine($"The time is: {time.Item1}.{time.Item2}.{time.Item3}");
+
+            var time2 = GetTime2();
+            WriteLine($"The time is: {time2.hour}.{time2.minute}.{time2.seconds}");
+            // deconstructed variable
+            var (hour, minute, seconds) = GetTime2();
+            WriteLine($"The time is: {hour}.{minute}.{seconds}");
+
+            // Dictionary with a tuple as the key
+            var tupleDictionary = new Dictionary<(int, int), string>
+            {
+                {(100, 20), "Your room is #20 on the 100th floor"},
+                {(50, 10), "Your room is on the 50th floor, room #10"}
+            };
+            WriteLine(tupleDictionary[(50,10)]);
+
+
+        }
+
+        public (int, int, int) GetTime()
+        {
+            return (1, 30, 40); // Tuple literal
+        }
+
+        public (int hour, int minute, int seconds) GetTime2()
+        {
+            return (1, 30, 40); // Tuple literal
         }
     }
 }
