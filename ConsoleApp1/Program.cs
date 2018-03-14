@@ -13,19 +13,20 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             var runner = new Runner();
-            //runner.Run();
-            //runner.Run2();
+            //runner.MultipleOutputVariables();
+            //runner.InlineDeclarationsOfOutputVariables();
             //runner.PrintSum(10);
             //runner.PrintSum2(10);
             //runner.PrintSum2("10");
-            //runner.Run3();
-            runner.Run4();
+            //runner.SwitchWithCondition();
+            //runner.TupleTesting();
+            runner.LocalFunctions();
         }
     }
 
     public class Runner
     {
-        public void Run()
+        public void MultipleOutputVariables()
         {
             int hour;
             int minutes;
@@ -35,7 +36,7 @@ namespace ConsoleApp1
            
         }
 
-        public void Run2()
+        public void InlineDeclarationsOfOutputVariables()
         {
             //C#7 inline declaration of output variables
             GetTime(out var hour, out var minutes, out var seconds);
@@ -76,7 +77,7 @@ namespace ConsoleApp1
             }
         }
 
-        public void Run3()
+        public void SwitchWithCondition()
         {
             Employee theEmployee = new VicePresident
             {
@@ -120,7 +121,7 @@ namespace ConsoleApp1
             public int StockShares { get; set; }
         }
 
-        public void Run4()
+        public void TupleTesting()
         {
             var time = GetTime();
             WriteLine($"The time is: {time.Item1}.{time.Item2}.{time.Item3}");
@@ -150,6 +151,26 @@ namespace ConsoleApp1
         public (int hour, int minute, int seconds) GetTime2()
         {
             return (1, 30, 40); // Tuple literal
+        }
+
+        public void LocalFunctions()
+        {
+            // write the 7th number of the fibonacci sequence
+            WriteLine(Fibonacci(7));
+        }
+
+        public int Fibonacci(int x)
+        {
+            if(x<0) throw new ArgumentException("Must be at least 0", nameof(x));
+            return Fib(x).current;
+           
+            //Local function - recursive with output tuple
+            (int current, int previous) Fib(int i)
+            {
+                if (i == 0) return(1, 0);
+                var (current, previous) = Fib(i - 1);
+                return (current + previous, current);
+            }
         }
     }
 }
