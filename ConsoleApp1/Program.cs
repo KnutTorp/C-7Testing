@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 // C#7 by making it static we can use WriteLine() in stead of Console.WriteLine()
 using static System.Console; 
 
@@ -64,7 +61,6 @@ namespace ConsoleApp1
             }
             WriteLine($"The sum of 1 to {i} is {sum}");
         }
-
         public void PrintSum2(object o)
         {
             if (o is int i || o is string s && int.TryParse(s, out i))
@@ -116,7 +112,6 @@ namespace ConsoleApp1
         {
             public int NumberOfManaged { get; set; }
         }
-
         public class VicePresident : Manager
         {
             public int StockShares { get; set; }
@@ -143,12 +138,10 @@ namespace ConsoleApp1
 
 
         }
-
         public (int, int, int) GetTime()
         {
             return (1, 30, 40); // Tuple literal
         }
-
         public (int hour, int minute, int seconds) GetTime2()
         {
             return (1, 30, 40); // Tuple literal
@@ -159,7 +152,6 @@ namespace ConsoleApp1
             // write the 7th number of the fibonacci sequence
             WriteLine(Fibonacci(7));
         }
-
         public int Fibonacci(int x)
         {
             if(x<0) throw new ArgumentException("Must be at least 0", nameof(x));
@@ -193,16 +185,12 @@ namespace ConsoleApp1
             WriteLine(joe.Position);
             var mary = new EmployeePosition(null);
             WriteLine(mary.Position);
-
         }
-
         public int GetBigNumber()
         {
             //Returned as a int 1234567 but easyer to read _ as separator
             return 1_234_567;
-
         }
-
         public ref int Substitute(int value, int[] numbers)
         {
             for (var i = 0; i < numbers.Length; i++)
