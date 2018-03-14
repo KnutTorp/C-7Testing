@@ -20,7 +20,8 @@ namespace ConsoleApp1
             //runner.PrintSum2("10");
             //runner.SwitchWithCondition();
             //runner.TupleTesting();
-            runner.LocalFunctions();
+            //runner.LocalFunctions();
+            runner.LanguageEnhancement();
         }
     }
 
@@ -172,5 +173,54 @@ namespace ConsoleApp1
                 return (current + previous, current);
             }
         }
+
+        public void LanguageEnhancement()
+        {
+            /*** example 1 return a formatted int***/
+            WriteLine(GetBigNumber());
+
+            /*** Example 2 return the ref to a value ****/
+            int[] numbers = {2, 7, 1, 9, 12, 8, 15};
+            // get a ref to the the number 12 if in array
+            ref int position = ref Substitute(12, numbers);
+            // change the int the ref points to
+            position = -1212;
+            // display the changed value
+            WriteLine(numbers[4]);
+
+            /*** Example 3 throw exception as expression ****/
+            var joe = new EmployeePosition("Developer");
+            WriteLine(joe.Position);
+            var mary = new EmployeePosition(null);
+            WriteLine(mary.Position);
+
+        }
+
+        public int GetBigNumber()
+        {
+            //Returned as a int 1234567 but easyer to read _ as separator
+            return 1_234_567;
+
+        }
+
+        public ref int Substitute(int value, int[] numbers)
+        {
+            for (var i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] == value)
+                {
+                    return ref numbers[i];
+                }
+            }
+            throw new IndexOutOfRangeException("Not found!");
+        }
+    }
+
+    public class EmployeePosition
+    {
+        public string Position { get; set; }
+        //throw exception as an expression
+        public EmployeePosition(string position) => Position = position ?? throw new ArgumentNullException();
+        
     }
 }
